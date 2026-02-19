@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +27,7 @@
       padding: 40px 24px 60px;
     }
 
+    /* ── Taula centrada i compacta ── */
     .taula-wrapper {
       display: flex;
       justify-content: center;
@@ -81,6 +81,7 @@
     .badge-high  { background: #d4f5e2; color: #1e7e4e; }
     .badge-vhigh { background: #dbeafe; color: #1d4ed8; }
 
+    /* ── Grid reproductors ── */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -91,6 +92,7 @@
     @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 580px) { .grid { grid-template-columns: 1fr; } }
 
+    /* ── Card ── */
     .card {
       background: var(--card);
       border: 1.5px solid var(--border);
@@ -138,6 +140,7 @@
       accent-color: var(--accent);
     }
 
+    /* ── Botons ── */
     .controls {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -161,6 +164,7 @@
     .btn.d:hover { background: var(--danger); border-color: var(--danger); color: #fff; }
     .btn:active  { transform: scale(0.95); }
 
+    /* ── Status ── */
     .status {
       font-size: 0.67rem;
       color: var(--muted);
@@ -173,6 +177,7 @@
 </head>
 <body>
 
+  <!-- Taula compacta centrada -->
   <div class="taula-wrapper">
     <table>
       <thead>
@@ -213,18 +218,21 @@
     </table>
   </div>
 
-
+  <!-- Grid reproductors -->
   <div class="grid" id="players"></div>
 
   <script>
-    
+    /**
+     * Control dels reproductors via HTMLMediaElement API
+     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement
+     */
     const tracks = [
-      { id:'a1', fmt:'MP3', title:'Mono · 8 000 Hz',     src:'audio/MP3%20-%20Mono%20-%208000%20Hz.mp3',          type:'audio/mpeg' },
-      { id:'a2', fmt:'MP3', title:'Estéreo · 16 000 Hz', src:'audio/MP3%20-%20Est%C3%A9reo%20-%2016000%20Hz.mp3', type:'audio/mpeg' },
-      { id:'a3', fmt:'MP3', title:'Estéreo · 44 100 Hz', src:'audio/MP3%20-%20Est%C3%A9reo%20-%2044100%20Hz.mp3', type:'audio/mpeg' },
-      { id:'a4', fmt:'WAV', title:'Mono · 16 000 Hz',    src:'audio/WAV%20-%20Mono%20-%2016000%20Hz.wav',          type:'audio/wav'  },
-      { id:'a5', fmt:'WAV', title:'Mono · 44 100 Hz',    src:'audio/WAV%20-%20Mono%20-%2044100%20Hz.wav',          type:'audio/wav'  },
-      { id:'a6', fmt:'WAV', title:'Estéreo · 44 100 Hz', src:'audio/WAV%20-%20Est%C3%A9reo%20-%2044100%20Hz.wav', type:'audio/wav'  },
+      { id:'a1', fmt:'MP3', title:'Mono · 8 000 Hz',     src:'MP3%20-%20Mono%20-%208000%20Hz.mp3',          type:'audio/mpeg' },
+      { id:'a2', fmt:'MP3', title:'Estéreo · 16 000 Hz', src:'MP3%20-%20Est%C3%A9reo%20-%2016000%20Hz.mp3', type:'audio/mpeg' },
+      { id:'a3', fmt:'MP3', title:'Estéreo · 44 100 Hz', src:'MP3%20-%20Est%C3%A9reo%20-%2044100%20Hz.mp3', type:'audio/mpeg' },
+      { id:'a4', fmt:'WAV', title:'Mono · 16 000 Hz',    src:'WAV%20-%20Mono%20-%2016000%20Hz.wav',          type:'audio/wav'  },
+      { id:'a5', fmt:'WAV', title:'Mono · 44 100 Hz',    src:'WAV%20-%20Mono%20-%2044100%20Hz.wav',          type:'audio/wav'  },
+      { id:'a6', fmt:'WAV', title:'Estéreo · 44 100 Hz', src:'WAV%20-%20Est%C3%A9reo%20-%2044100%20Hz.wav', type:'audio/wav'  },
     ];
 
     const grid = document.getElementById('players');
