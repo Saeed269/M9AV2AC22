@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AC22 MP09</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #eef0f5;
+      --card:   #ffffff;
+      --border: #dde1ea;
+      --accent: #4f6ef7;
+      --danger: #e05c5c;
+      --text:   #1a1d23;
+      --muted:  #9097a6;
+      --sans:   'Nunito', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      font-family: var(--sans);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 24px 60px;
+    }
+
+    .taula-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    table {
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    thead tr { background: #f4f6fb; }
+
+    thead th {
+      font-size: 0.67rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f6f8ff; }
+
+    tbody td {
+      padding: 8px 14px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 0.78rem;
+    }
+
+    tbody td:first-child { font-weight: 700; color: var(--accent); }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 20px;
+      font-size: 0.67rem;
+      font-weight: 700;
+    }
+    .badge-low   { background: #fde8e8; color: #c0392b; }
+    .badge-mid   { background: #fef3cd; color: #b7791f; }
+    .badge-high  { background: #d4f5e2; color: #1e7e4e; }
+    .badge-vhigh { background: #dbeafe; color: #1d4ed8; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 22px;
+      padding: 20px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 28px rgba(79,110,247,0.14);
+      transform: translateY(-3px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .format-pill {
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: #eef1fe;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .card-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    audio {
+      width: 100%;
+      height: 34px;
+      border-radius: 8px;
+      accent-color: var(--accent);
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
+    .btn {
+      padding: 6px 2px;
+      font-size: 0.7rem;
+      font-family: var(--sans);
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      background: #f7f8fb;
+      color: var(--text);
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.12s;
+      text-align: center;
+    }
+    .btn:hover   { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.d:hover { background: var(--danger); border-color: var(--danger); color: #fff; }
+    .btn:active  { transform: scale(0.95); }
+
+    .status {
+      font-size: 0.67rem;
+      color: var(--muted);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+    .status span.on { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <div class="taula-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Format</th>
+          <th>Canals</th>
+          <th>Freqüència</th>
+          <th>Qualitat</th>
+          <th>Mida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MP3</td><td>Mono</td><td>8 000 Hz</td>
+          <td><span class="badge badge-low">Baixa</span></td><td>552 KB</td>
+        </tr>
+        <tr>
+          <td>MP3</td><td>Estèreo</td><td>16 000 Hz</td>
+          <td><span class="badge badge-mid">Mitja</span></td><td>2.124 KB</td>
+        </tr>
+        <tr>
+          <td>MP3</td><td>Estèreo</td><td>44 100 Hz</td>
+          <td><span class="badge badge-high">Alta</span></td><td>4.123 KB</td>
+        </tr>
+        <tr>
+          <td>WAV</td><td>Mono</td><td>16 000 Hz</td>
+          <td><span class="badge badge-high">Alta</span></td><td>5.501 KB</td>
+        </tr>
+        <tr>
+          <td>WAV</td><td>Mono</td><td>44 100 Hz</td>
+          <td><span class="badge badge-vhigh">Molt alta</span></td><td>15.160 KB</td>
+        </tr>
+        <tr>
+          <td>WAV</td><td>Estèreo</td><td>44 100 Hz</td>
+          <td><span class="badge badge-vhigh">Molt alta</span></td><td>30.379 KB</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="grid" id="players"></div>
+
+  <script>
+    
+    const tracks = [
+      { id:'a1', fmt:'MP3', title:'Mono · 8 000 Hz',     src:'audio/MP3%20-%20Mono%20-%208000%20Hz.mp3',          type:'audio/mpeg' },
+      { id:'a2', fmt:'MP3', title:'Estéreo · 16 000 Hz', src:'audio/MP3%20-%20Est%C3%A9reo%20-%2016000%20Hz.mp3', type:'audio/mpeg' },
+      { id:'a3', fmt:'MP3', title:'Estéreo · 44 100 Hz', src:'audio/MP3%20-%20Est%C3%A9reo%20-%2044100%20Hz.mp3', type:'audio/mpeg' },
+      { id:'a4', fmt:'WAV', title:'Mono · 16 000 Hz',    src:'audio/WAV%20-%20Mono%20-%2016000%20Hz.wav',          type:'audio/wav'  },
+      { id:'a5', fmt:'WAV', title:'Mono · 44 100 Hz',    src:'audio/WAV%20-%20Mono%20-%2044100%20Hz.wav',          type:'audio/wav'  },
+      { id:'a6', fmt:'WAV', title:'Estéreo · 44 100 Hz', src:'audio/WAV%20-%20Est%C3%A9reo%20-%2044100%20Hz.wav', type:'audio/wav'  },
+    ];
+
+    const grid = document.getElementById('players');
+
+    tracks.forEach(t => {
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="card">
+          <div class="card-header">
+            <span class="format-pill">${t.fmt}</span>
+            <span class="card-title">${t.title}</span>
+          </div>
+          <audio id="${t.id}" controls>
+            <source src="${t.src}" type="${t.type}">
+          </audio>
+          <div class="controls">
+            <button class="btn"   onclick="ctrl('${t.id}','play')">▶ Play</button>
+            <button class="btn d" onclick="ctrl('${t.id}','pause')">⏸ Pausa</button>
+            <button class="btn"   onclick="ctrl('${t.id}','volUp')">Vol +</button>
+            <button class="btn d" onclick="ctrl('${t.id}','volDown')">Vol −</button>
+            <button class="btn"   onclick="ctrl('${t.id}','velUp')">Vel +</button>
+            <button class="btn d" onclick="ctrl('${t.id}','velDown')">Vel −</button>
+            <button class="btn"   onclick="ctrl('${t.id}','skip',5)">+5s</button>
+            <button class="btn d" onclick="ctrl('${t.id}','skip',-5)">−5s</button>
+          </div>
+          <div class="status" id="s${t.id}">
+            <span>vol: 1.0</span><span>vel: 1.00x</span>
+          </div>
+        </div>
+      `);
+
+      const audio = document.getElementById(t.id);
+      audio.addEventListener('volumechange', () => updateStatus(t.id, audio));
+      audio.addEventListener('ratechange',   () => updateStatus(t.id, audio));
+    });
+
+    function ctrl(id, action, val) {
+      const a = document.getElementById(id);
+      if (!a) return;
+      switch (action) {
+        case 'play':    a.play(); break;
+        case 'pause':   a.pause(); break;
+        case 'volUp':   a.volume = Math.min(1,    +(a.volume + 0.1).toFixed(1)); break;
+        case 'volDown': a.volume = Math.max(0,    +(a.volume - 0.1).toFixed(1)); break;
+        case 'velUp':   a.playbackRate = Math.min(4,    +(a.playbackRate + 0.25).toFixed(2)); break;
+        case 'velDown': a.playbackRate = Math.max(0.25, +(a.playbackRate - 0.25).toFixed(2)); break;
+        case 'skip':    a.currentTime = Math.max(0, Math.min(a.duration||0, a.currentTime + val)); break;
+      }
+      updateStatus(id, a);
+    }
+
+    function updateStatus(id, audio) {
+      const s = document.getElementById('s' + id);
+      if (!s) return;
+      const [sv, sr] = s.querySelectorAll('span');
+      sv.textContent = 'vol: ' + audio.volume.toFixed(1);
+      sr.textContent = 'vel: ' + audio.playbackRate.toFixed(2) + 'x';
+      sv.classList.toggle('on', audio.volume !== 1);
+      sr.classList.toggle('on', audio.playbackRate !== 1);
+    }
+  </script>
+
+</body>
+</html>
